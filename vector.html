@@ -98,19 +98,27 @@
         </div>
       </div>
     </div>
-    <!-- <div class="card-body">
+
+        <div class="col-8 product-title">
+          <!-- <div class="product-name">ROOFTOP CARGO CARRIER</div> -->
+          <p>Thule Vector</p>
+        </div>
+          <!-- <div class="col-4 text-right">
+            <div class="font-weight-bold font-16">$1,399.95 </div>
+          </div> -->
+      </div>
+    </div>
+
+    <!-- <div class="card-body p-0">
       <div class="row">
         <div class="col-8 product-title">
-          <div class="product-name">ROOFTOP CARGO CARRIER</div>
-          <p>Thule Vector M </p>
-        </div>
-        <div class="col-4 text-right">
-          <div class="font-weight-bold font-16">$1,399.95 </div>
+          <p>Thule Vector</p>
         </div>
       </div>
+    </div> -->
 
 
-      <div class="colors my-2">
+      <!-- <div class="colors my-2">
         <div class="btn-group mt-0 mb-3" data-toggle="buttons" data-tooltip="tooltip" data-placement="right"
           title="choose color">
           <label class="btn btn-black form-check-label active">
@@ -120,8 +128,8 @@
             <input class="form-check-input" type="radio" autocomplete="off">
           </label>
         </div>
-      </div>
-    </div> -->
+      </div> -->
+    </div> 
   </div>
   </div>
   </div>
@@ -140,8 +148,6 @@
       ar-placement="floor"
       ar-modes="webxr quick-look" 
       ar-scale="fixed" 
-      loading="eager"
-       reveal="interaction" 
      alt="Select Car">
 
       <!-- <button  id="ar-button">
@@ -149,7 +155,7 @@
       </button> -->
 
       <button slot="ar-button" class="hide-apped" id="ar-button">
-        Proceed 5
+        Proceed 3
       </button>
 
       <button class="rounded-circle-btn ar-visible d-none" id="close-model">
@@ -217,9 +223,9 @@
               <div class="col-8 size-section" id="sizeChange">
                 <div class="model-slide">
                   <button type="button" onclick="sizeSportL()"
-                    class="btn btn-primary rounded-circle btn-white d-inline-block size-btn">Alpine</button>
+                    class="btn btn-primary rounded-circle btn-white d-inline-block size-btn active-color">Alpine</button>
                   <button type="button" onclick="sizeXXL()"
-                    class="btn btn-primary rounded-circle btn-white d-inline-block size-btn">XL </button>
+                    class="btn btn-primary rounded-circle btn-white d-inline-block size-btn" disabled>XL </button>
                   <button type="button" onclick="sizeM()"
                     class="btn btn-primary rounded-circle btn-white d-inline-block size-btn" disabled>M
                   </button>
@@ -244,7 +250,6 @@
           </div>
         </div>
       </div>
-
     </model-viewer>
   </div>
 
@@ -259,9 +264,7 @@
   <!-- <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
 
   <!-- Loads <model-viewer> for modern browsers: -->
-  <!-- <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
-  </script> -->
-  <script type="module" src="js/modelviewer.js">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -352,18 +355,37 @@
     });
 
     $(document).ready(function () {
-      $("#imgSize").css("height", "42px");
+     
       $("#ar-button").click(function (e) {
-        document.getElementById("imgSize").setAttribute("src", "./img/glb/Thule Vector Alpine 613500-hp_iOS_V7.glb");
+      //  document.getElementById("imgSize").setAttribute("src", "./img/glb/613500_Thule_Vector_Alpine_HP_V1.glb");
        // document.getElementById("imgSize").setAttribute("ios-src", "./img/glb/613500_Thule_Vector_Alpine_hp_V1.usdz");
         $("#hide-btn-main").css("display", "block");
+        $("#hide-btn-main").css("opacity", "1");
+        $("#imgSize").css("opacity", "1");
         $(".rounded-circle-btn").css("display", "block");
         $('.ar-visible').removeClass("d-none")
-        // $('.container').addClass("test")
         document.getElementById("imgSize").style.height = "42px"
-        
         // updateOrientation();
       });
+
+      if (ar-status == "object-placed"){
+        document.getElementById("imgSize").setAttribute("src", "./img/glb/613500_Thule_Vector_Alpine_HP_V1.glb");
+      }
+
+
+         const modelView = document.querySelector("model-viewer#imgSize");
+        if (window.location.pathname == "./vector.html") {
+          $("#hide-btn-main").css("display", "block");
+          $("#imgSize").css("opactiy", "0");
+          document.getElementById("imgSize").removeAttribute("src");
+          window.location.reload(true)
+        } else {
+          $("#hide-btn-main").css("display", "none");
+          $("#imgSize").css("height", "42px");
+         // document.getElementById("imgSize").style.height = "50px".
+          document.getElementById("imgSize").removeAttribute("src");
+          // document.getElementById("hide-btn-main").style.display = "none";
+        }
     });
 
     
